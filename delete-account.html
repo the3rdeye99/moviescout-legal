@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MovieScout — Delete Account</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --border: #1e1e2e;
+      --accent: #e8c468;
+      --accent-dim: rgba(232, 196, 104, 0.12);
+      --text-primary: #f0efe8;
+      --text-secondary: #8a8a9a;
+      --text-muted: #4a4a5a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 32px 120px;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 64px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .app-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .app-tag::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 48px;
+      padding: 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      position: relative;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .section:nth-child(2) { animation-delay: 0.05s; }
+    .section:nth-child(3) { animation-delay: 0.10s; }
+    .section:nth-child(4) { animation-delay: 0.15s; }
+    .section:nth-child(5) { animation-delay: 0.20s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-number {
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 48px;
+      color: var(--text-muted);
+      opacity: 0.3;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      padding-right: 48px;
+    }
+
+    p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    ul li {
+      font-size: 15px;
+      color: var(--text-secondary);
+      padding: 8px 0 8px 20px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    ul li:last-child { border-bottom: none; }
+
+    ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 12px;
+    }
+
+    /* Warning card */
+    .warning-card {
+      margin-top: 16px;
+      padding: 20px 24px;
+      background: rgba(232, 196, 104, 0.06);
+      border: 1px solid rgba(232, 196, 104, 0.15);
+      border-radius: 2px;
+    }
+
+    .warning-card p {
+      color: #9a8a5a;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    /* Contact card */
+    .contact-card {
+      margin-top: 16px;
+      padding: 20px 24px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(232, 196, 104, 0.2);
+      border-radius: 2px;
+    }
+
+    .contact-card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: var(--text-muted);
+    }
+
+    .footer-note {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <div class="app-tag">MovieScout</div>
+      <h1>Delete <em>Account</em></h1>
+      <p class="meta">Last updated: March 2026</p>
+    </header>
+
+    <div class="section">
+      <span class="section-number">1</span>
+      <h2>How to Delete Your Account</h2>
+      <p>You can delete your account directly from within the app by following these steps:</p>
+      <ul>
+        <li>Open MovieScout and make sure you are logged in</li>
+        <li>Tap the Profile icon in the bottom navigation bar</li>
+        <li>Scroll to the bottom of the profile screen</li>
+        <li>Tap <strong style="font-weight: 500; color: #f0efe8;">Delete Account</strong> below the Log Out button</li>
+        <li>Confirm twice when prompted — your account is permanently deleted immediately</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <span class="section-number">2</span>
+      <h2>What Gets Deleted</h2>
+      <p>The following data is permanently removed when you delete your account:</p>
+      <ul>
+        <li>Your account and login credentials</li>
+        <li>Watch history, wishlist, and ratings</li>
+        <li>Comments on movies and TV shows</li>
+        <li>Custom lists and saved collections</li>
+        <li>Follower and following relationships</li>
+        <li>All sent and received recommendations</li>
+      </ul>
+      <div class="warning-card">
+        <p>This action cannot be undone. Once your account is deleted, your data cannot be recovered.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="section-number">3</span>
+      <h2>Deletion Timeline</h2>
+      <p>Account and cloud data deletion is processed immediately upon confirmation. Any residual data in backup systems is fully purged within 30 days.</p>
+    </div>
+
+    <div class="section">
+      <span class="section-number">4</span>
+      <h2>Need Help?</h2>
+      <p>If you are unable to access your account or need us to manually process a deletion request, contact us and we will handle it within 7 days.</p>
+      <div class="contact-card">
+        <a href="mailto:moviescout.app@gmail.com">moviescout.app@gmail.com</a>
+      </div>
+    </div>
+
+    <footer>
+      <span class="footer-brand">MovieScout</span>
+      <span class="footer-note">© 2026 MovieScout. All rights reserved.</span>
+    </footer>
+
+  </div>
+</body>
+</html>
